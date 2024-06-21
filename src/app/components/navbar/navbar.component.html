@@ -1,0 +1,38 @@
+
+<!--Todo este codigo ha sido copiado de 
+https://getbootstrap.com/docs/5.3/components/navbar/
+Que basicamente es una pagina donde te ofrece recursos html para el front
+En este caso hemos copiado un navbar
+-->
+
+<nav class="navbar bg-dark navbar-expand-lg border-bottom border-body" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+             <!--Aqui, con el [routerLink] lo que hacemos es que cuando se haga click en el boton de Home, cargue el componente MainComponent-->
+             <!--[routerLink]="'/main'"-->
+            <a class="nav-link active" [routerLink]="'/main'" aria-current="page" href="#">Main</a>
+          </li>
+          <li class="nav-item">
+            <!--Aqui con lo mismo pero con TiempoComponent-->
+            <a class="nav-link" [routerLink]="'/time'">Tiempo</a>
+          </li>
+          
+          
+
+          <li class="nav-item">
+            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          </li>
+        </ul>
+   
+        
+      </div>
+    </div>
+  </nav>
