@@ -19,7 +19,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  //En este caso Declarations no es necesario, ya que este modulo no contiene componentes
+  //En este caso "declarations:" no es necesario, ya que este modulo no contiene componentes
   imports: 
   [
       RouterModule.forRoot (routes) //Indicamos que este es el archivo de rutas principal

@@ -1,1 +1,47 @@
-<p>main works!</p>
+<!--Tema directivas-->
+
+<h4>En este apartado vamos a probar directivas</h4>
+
+<!--Vamos a utilizar la directiva ngFor-->
+<!--Con el fin de recorrer el Array de String Ciudades del componente-->
+
+<!--Otra directiva importante es el ngIf-->
+<!--Imprime el HTML si la variable es verdadera-->
+
+<!--La directiva click-->
+<!--Que van entre parentesis (click) y llama a un metodo-->
+
+<!--Y la ngClass-->
+<!--Que permite añadir nuevas clases CSS al HTML-->
+
+
+<br>
+<div class="container" *ngIf="showCiudad">
+    <p>Ciudades</p>
+    <ul> 
+        <li *ngFor="let ciudad of ciudades">{{ciudad}}</li> <!--Asi se pone el ngFor, donde se declara una variable que se va a rellenar por cada registro que recorra el for-->
+    </ul>
+
+</div>
+
+
+<div class="container">
+    <button class="btn btn-primary" *ngIf="showCiudad" (click)="mostrar()">Esconder ciudades</button>
+    <button class="btn btn-primary" *ngIf="!showCiudad" (click)="mostrar()">Mostrar ciudades</button>
+</div>
+<br>
+
+
+
+<div class="container">
+    <h4>ngClass</h4>
+    <br>
+    <!--La clase y el boolean que si es verdadero hace que se llame a la clase-->
+    <!--Y tambien si es falso el booleano carga otra clase-->
+    <div [ngClass]="{'alert-primary': changeCSS, 'alert-warning':!changeCSS}" class="alert" role="alert"> 
+        Estilos de alerta Bootstrap
+    </div>
+    <div>
+        <button class="btn btn-primary" (click)="cambioCSS()">Cambio de estilo CSS</button>
+    </div>
+</div>

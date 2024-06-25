@@ -1,31 +1,51 @@
 <div class="container">
     <h4>Consulta del tiempo por ciudad</h4>
 
+    <!--Vamos a usar el Pipe de fecha, para que tenga un formato mas amigable-->
+    <h5>{{fecha | date:'dd/MM/yyyy'}}</h5>
 
 
-    <div class="col-lg-6 alineacion card"> 
+    <div class="col-lg-6 col-md-6 alineacion card">
 
     <!--El siguiente formulario, ha sido copiado de 
     https://getbootstrap.com/docs/5.3/forms/overview/
     -->
 
-    <form>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
+    <form [formGroup] = "formulario" (ngSubmit)="consultar()"> 
+      <!--Con la directiva ngSubmit se llama al metodo consultar() cuando se pulse el boton Consultar -->
+
+
 
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
+          <label for="exampleInputEmail1" class="form-label">Ciudad</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="ciudad">
+
+
+          <!--Vamos a poner aqui un parrafo para indicarle mens ajes al usuario-->
+          <!--Con la clase text-danger de Bootstrap hacemos que las letras salgan en rojo-->
+          <!--Con la directiva ngIf (que es como un if normal) hacemos que si ciudad es invalid o fue tocado, se muestra el parrafo-->
+          <!--Con el ? evaluamos si el objeto es nulo, si no es nulo verifica las condiciones, si lo es no hace nada-->
+          <p class="text-danger" *ngIf="formulario.get('ciudad')?.invalid && formulario.get('ciudad')?.touched">Introduzca una ciudad válida</p>
+        </div>
+
+
+
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Codigo Ciudad</label>
+          <input type="text" class="form-control" id="exampleInputPassword1" formControlName="codigo">
+          <p class="text-danger" *ngIf="formulario.get('codigo')?.invalid && formulario.get('codigo')?.touched">Introduzca un código válido</p>
         </div>
        
-        <button type="submit" class="btn btn-primary">Submit</button>
+
+
+        <button type="submit" class="btn btn-primary">Consultar</button>
       </form>
+      <!--Aparecera el parrafo si showError es verdadero-->
+      <p class="text-danger" *ngIf="showError">{{mensajeError}}</p>
     </div>
 
 
-    <div class="col-lg-6 alineacion">
+    <div class="col-lg-6 col-md-6 alineacion">
          <!--La siguiente tarjeta, ha sido copiada de 
     https://getbootstrap.com/docs/5.3/components/card/
     -->
@@ -33,10 +53,13 @@
             <div class="card-body">
               <!--Generamos una lista-->
               <ul>
-                <li>Ciudad:</li>
-                <li>Temperatura:</li>
-                <li>Latitud:</li>
-                <li>Longitud:</li>
+                <!--Para mostrar el valor se hace {{valor}}-->
+                <li>Ciudad: {{name | uppercase}}</li> <!--Lo de | uppercase es un Pipe de Angular que hará que el name este en mayusculas-->
+                <li>Descripcion: {{descripcion}}</li>
+                <li>Temperatura: {{temperatura}} ºC</li>
+                <li>Humedad: {{humedad}}%</li>
+                <li>Latitud: {{latitud}}º</li>
+                <li>Longitud: {{longitud}}º</li>
               </ul>
                 
             </div>
