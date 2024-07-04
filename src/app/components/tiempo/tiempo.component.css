@@ -3,3 +3,20 @@
     float: left;
     padding: 15px 15px 15px 15px;
 }
+
+.marginByT
+{
+    margin-bottom:20px;
+    margin-top:20px;
+}
+.centrar
+{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+ul
+{
+    list-style-type: none;
+}

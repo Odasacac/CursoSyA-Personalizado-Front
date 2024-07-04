@@ -9,6 +9,29 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent 
 {
-  //Aqui va el codigo
-  //Es el archivo controlador que hace el match entre el modelo, lo que obtengamos de datos y la vista
+   //Este boolean es para el ngIF del boton del menu del navbar, para mostrarlo u ocultarlo segun sea true o false
+  public showMenu: boolean = false;
+
+  //Y este es el metodo que cambia el valor del booleano, que se llama cuando se pulsa el boton
+  mostrar()
+  {
+    this.showMenu=!this.showMenu;
+  }
+
+  //Este es el metodo que cierra la aplicacion
+  //Pero no funciona debido a la seguridad del navegador sobre window.close()
+  cerrar()
+  {
+    window.close();
+  }
+
+  // Y este es el metodo que enlaza con una web externa
+  aWeb()
+  {
+    window.open('https://www.google.com', '_blank');
+  }
+
+
+
+
 }

@@ -8,7 +8,23 @@ import { TiempoComponent } from "./components/tiempo/tiempo.component";
 import { AppRoutingModule } from "./app-routing.module";
 
 import { ReactiveFormsModule } from "@angular/forms";
-import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
+import { NewComponentComponent } from "./components/new-component/new-component.component";
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MaterialModule } from "./others/angular-material/angular-material.module";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatButtonModule } from "@angular/material/button";
+import { DialogContentComponent } from "./others/dialog/dialog.component";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatTableModule } from "@angular/material/table";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MostrarmensajesComponent } from "./components/mostrarmensajes/mostrarmensajes.component";
+import { ConfirmacionComponent } from "./others/confirmacion/confirmacion.component";
+import { EmailComponent } from "./components/email/email.component";
+import { MensajesService } from "./services/mensajes/mensajes.service";
+import { MensajesComponent } from "./others/mensajes/mensajes.component";
+
 
 
 //El appModule es el modulo principal que viene en el proyecto base
@@ -22,7 +38,13 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
         AppComponent,
         NavbarComponent,
         MainComponent,
-        TiempoComponent
+        TiempoComponent,
+        NewComponentComponent,
+        DialogContentComponent,
+        MostrarmensajesComponent,
+        ConfirmacionComponent,
+        EmailComponent,
+        MensajesComponent
     ],
     imports: [//Aqui van a ir los modulos necesarios para el funcionamiento de este modulo
         
@@ -32,9 +54,16 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 
         ReactiveFormsModule, //El reactive module es para manejar formularios
 
-        HttpClientModule //Para poder utilizar las peticiones http
+        HttpClientModule, //Para poder utilizar las peticiones http
+
+        MaterialModule, //Importante para usar AngularMaterial
+
+        MatDialogModule, MatButtonModule, MatSnackBarModule, MatTableModule, MatFormFieldModule, MatInputModule //De y para AngularMaterial
+
     ],
-    providers: [], //Aqui iran los servicios
+    providers: [
+    provideAnimationsAsync()
+  ], //Aqui iran los servicios
 
     bootstrap: [AppComponent] //Finalmente se indica que componente se carga cuando la aplicacion se inicia
 })

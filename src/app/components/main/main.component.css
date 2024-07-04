@@ -1,0 +1,19 @@
+.centrar
+{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+ul
+{
+    list-style-type: none;
+}
+
+.verde {
+    background-color: #7FFF7F;
+}
+
+.rojo {
+    background-color: #FFA07A;
+}

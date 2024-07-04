@@ -1,0 +1,282 @@
+<h1 class="marginByT marginLyR">{{textoEncabezado}}</h1><br>
+
+<!--Los otros componentes son cutres en cuanto a diseño, para ello vamos a toquetear AngularMaterial-->
+
+<!--Lo primero, instalar Angular Material:-->
+<!--Tambien se puede hacer con Bootstrap, pero Angular Material está mas sincronizada con Angular-->
+<!--ng add @angular/material-->
+<!--Preguntara si quieres un tema prediseñado o uno propio, dale a prediseñado el que quieras-->
+<!--Tambien si quieres un estilo tipografico global, tambien que si-->
+<!--Y si quieres incluir el modulo de animaciones, tambien-->
+<!--Listo, instalado y actualizado, se modigican automaticamente algunos archivos-->
+
+<!--Ahora hay que importar los modulos de Angular Material-->
+<!--Para ello, crea un modulo para importar todos los modulos que usa AngularMaterial-->
+<!--Yo he hecho: ng g m others/angularMaterial-->
+<!--Y listo, se borra todo el interior del modulo creado y se pegan las importaciones, puedes verlo en mi angular-material.module.ts-->
+
+<h2>Empezamos</h2>
+<br><br><br><br>
+
+
+
+
+
+<h2>Esto es un boton normal</h2>
+<button>Boton normal</button>
+<br><br>
+<h4>Esto es un boton de AM</h4>
+<button mat-button color="primary">Boton AM</button> <!--Adquiere el color del estilo que se le indico al principio-->
+<p>Más estilizado, con mas rollete</p>
+<p>Este es otro boton de AM, pero como con mas cuerpo</p>
+<button mat-raised-button color="primary">Boton AM con mas cuerpo</button>
+<br><br><br><br>
+
+
+
+
+
+
+<h2>Vamos a probar iconos en botones</h2>
+
+
+    <button mat-raised-button color="primary"> <!--Lo de mat-raised-button es para darle efectillo-->
+      <mat-icon>home</mat-icon>Casita</button>
+  
+    <button color="accent"> <!--Queda feo porque no es un boton de Angular-->
+      <mat-icon>favorite</mat-icon>Corason</button> <!--El mat-icon le da el icono-->
+  
+    <button mat-raised-button color="warn">
+      <mat-icon>delete</mat-icon>Papelera</button>
+
+      <button mat-raised-button color="warn">Papelera</button>
+  
+    <button mat-raised-button>
+      <mat-icon>search</mat-icon>Lupa</button>
+
+      <button mat-raised-button>
+        <mat-icon>search</mat-icon></button>
+
+    <button mat-button color="primary"> 
+      <mat-icon>settings</mat-icon></button> <!--No tiene texto-->
+  
+    <button mat-raised-button color="primary">
+      <mat-icon>settings</mat-icon>Engranaje</button>
+
+ <br><p>Con texto, sin texto, con formato, sin formato... muchas combinaciones</p>
+ <br><br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--Cosas interesantes, se pueden montar Toolbars-->
+<h2>Se pueden crear Toolbars</h2>
+
+<mat-toolbar color="primary">
+    <span>Nombre de la aplicación</span>
+    <span class="spacer"></span> <!--Esto es para espaciar los elementos de la barra, yo no lo noto mucho pero bueno-->
+  <button mat-button>Boton 1</button>
+  <button mat-button>Boton 2</button>
+  <button mat-button>Boton 3</button>
+  <button mat-button>...</button>
+  <button class="derechaDelTodo" mat-button [matMenuTriggerFor]="menu"><mat-icon>settings</mat-icon>Este es el mitico menu desplegable que le das y se abren las opciones, le he puesto un iconito al principio</button> <!--Esto es para abrir un menu con las opciones-->
+  <!--Basicamente es un boton, cuando se pulsa abre el identificador menu, que es el mat-menu de abajo-->
+  <mat-menu #menu="matMenu"> <!--mat-menu es un menu desplegable-->
+    <button mat-menu-item>Opcion 1 Desplegable</button>
+    <button mat-menu-item>Opcion 2 Desplegable</button>
+    <button mat-menu-item>Opcion 3 Desplegable</button>
+  </mat-menu> <!--Es decir, se engloban las opciones dentro del mat-menu-->
+  </mat-toolbar>
+  <br><br><br><br>
+
+
+
+
+
+
+
+
+
+<!--Formularios, en plan para rellenar-->
+
+<h2>Seguimos, inputs y formularios</h2>
+
+<p>Lo primero es una caja donde se puede escribir, un input en este caso</p>
+
+<mat-form-field appearance="fill"> <!--Lo de la appearance es para darle como formato a la caja, hay varios: fill, standard, outline, legacy...-->
+  <mat-label>Si clickas escribes aqui</mat-label> <!--Esto es lo que aparece antes de clickar-->
+  <input matInput placeholder="Has clickado, escribe"> <!--Y esto es lo que aparece cuando clickas-->
+</mat-form-field>
+ 
+<p>Ahora formularios, que son mas challenging</p>
+<!--Aparte de las importaciones en AppModule: MatInputModule, MatFormFieldModule y MatButtonModule-->
+<!--Hay que crear el formulario en el archivo ts-->
+  
+<form [formGroup]="formulario" class="paraFormulario" (ngSubmit)="onSubmit()"> 
+
+  <!--ngSubmit es una directiva de Angular que se utiliza para manejar el evento de envío de formularios -->
+  <!--Que basicamente lo que hace es ejecutar el metodo onSubmit() cuando el boton typo submit sea pulsado-->
+
+  <!--Lo de [formGroup] es fundamental lo que hace es vincular un FormGroup de TypeScript al formulario HTML-->
+  <!--Y eso lo hace con el nombre, formulario en este caso, que es el mismo nombre que el FormGroup del archivo ts-->
+
+  <mat-form-field appearance="fill"> <!--El mat-form-field basicamente envuelve y estiliza campos de formulario-->
+
+    <mat-label>Nombre</mat-label> <!--Etiqueta que describe el nombre de la caja-->
+    <input matInput formControlName="nombre" minlength="3" maxlength="10" required matInput placeholder="Entre 3 y 10 caracteres"> 
+        <!--La etiqueta input se usa para declarar un elemento para ingresar datos-->
+    <!--mat-input: lo tipico de AngularMaterial para darle estilo y demas-->
+    <!--formControlName: directiva para formularios reactivos para vincular un control del formulario a un campo en especifico-->
+
+    <!--Validaciones del Nombre-->
+    <!--En esta label son sencillas, incluir un minlenght, un maxlenght y un required-->
+    <!--required significa que el formulario no se va a entender como valido si no se rellena este campo-->
+    <!--Luego crear unas etiquetas mat-error, que basicamente son labels rojos-->
+    <!--Directiva ngIf, si alguna condicion no se cumple, se muestra el mat-error que sea-->
+    <!--La de maxlenght no hace falta porque con ponerlo arriba ya limita el numero maximo de caracteres-->
+    <mat-error *ngIf="formulario.get('nombre')?.hasError('required')">El nombre es obligatorio</mat-error>
+    <mat-error *ngIf="formulario.get('nombre')?.hasError('minlength')">El nombre debe tener al menos 3 caracteres</mat-error>
+    <!--Importante el ? porque puede que sea nulo el objeto nombre y entonces ya peta-->
+    <!--Sin olvidar tampoco que hay que ir a crearFormulario() y ahi indicar el Validators.LoQueSea-->
+
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Correo</mat-label>
+    <input matInput formControlName="correo" required matInput placeholder="usuario@dominio.x">
+    <mat-error *ngIf="formulario.get('correo')?.hasError('required')">El correo es obligatorio</mat-error>
+    <mat-error *ngIf="formulario.get('correo')?.hasError('correo')">El correo electrónico no es válido</mat-error>
+  </mat-form-field>
+
+  <!--Vamos a ponerle un selector aqui dentro por tontear-->
+  <mat-form-field appearance="fill">
+      <mat-label>Selecciona una opcion</mat-label>
+      <mat-select formControlName="academia">
+        <mat-option value="Alumno">Alumno</mat-option>
+        <mat-option value="Profesor">Profesor</mat-option>
+        <mat-option value="Externo">Externo</mat-option>
+      </mat-select>
+  </mat-form-field>
+
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Mensaje</mat-label>
+    <textarea matInput formControlName="mensaje" maxlength="254" required matInput placeholder="Máximo 254 caracteres"></textarea>
+    <!--Veras que esta caja es mas grande y se puede expandir-->
+    <!--Esto es debido a que es un textarea y no un input-->
+    <!--Un input te permite escribir solo en una linea y un text area en mas-->
+    <mat-error *ngIf="formulario.get('mensaje')?.hasError('required')">El mensaje es obligatorio</mat-error>
+
+  </mat-form-field>
+
+   <!--Cuando este boton se pulse, se triggeara el ngSubmit y se llamara al metodo onSubmit()-->
+  <button mat-raised-button class="mb-3" color="primary" type="submit">Enviar</button>
+  
+  <button mat-raised-button style="color: yellow"(click)="reiniciarFormulario()">Borrar</button>
+</form>
+<br>
+<p *ngIf="enviadoNo">Mensaje no enviado</p>
+<br>
+<p>Son inputs y textareas, pero envueltos/encapsulados en la etiqueta</p>
+<p>Lo que les permite estar bajo el control del boton que enviará los datos al objeto value del TypeScript</p>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--MatSelect, desplegables-->
+
+<h2>Ahora vamos con los desplegables</h2>
+
+<mat-form-field appearance="fill" style="width: 300px;"> <!--No deberia aplicarse asi el estilo, sino en una hoja CSS, pero bueno es por hacer mas grande la caja-->
+  <mat-label>Clicka para ver las opciones</mat-label>
+  <mat-select>
+    <mat-option value="opcion1">Opción 1</mat-option>
+    <mat-option value="opcion2">Opción 2</mat-option>
+    <mat-option value="opcion3">Facilito esto</mat-option>
+  </mat-select>
+</mat-form-field>
+<br><br><br><br>
+<!--Diferencias entre el mat-menu y el mat-select-->
+<!--Basicamente en el mat-menu se ponen acciones o comandos: perfil, configuracion, cerrar sesion, abrir, guardar como, copiar...-->
+<!--Y en el mat-select se ponen opciones para elegir, mas rollo para un formulario-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Vale, MatDialog, que basicamente es una ventana emergente</h2>
+
+
+<!--MatDialog, hay que crear un componente, en este caso ng g c others/dialog-->
+<!--Importante importar el MatDialog en el AppModule-->
+<!--Una vez relleno, hay que inyectar el MatDialog en el archivo.ts del componente desde donde queremos que se ejecute-->
+<!--private dialog = inject(MatDialog); en new-component.component.ts, en este caso-->
+<!--Finalmente, en el HTML se crea un boton para abrirlo-->
+
+<br><p>Aqui hay un boton que si se pulsa abre una ventana emergente</p>
+
+<button mat-raised-button color="primary" (click)="openDialog()"><mat-icon>favorite</mat-icon>Clicka en mi, abrire una ventana emergente</button>
+
+<!--Basicamente el boton al clickarlo ejecuta el metodo openDialog() de este componente, que estara definido en el archivo TypeScript-->
+<br><br><br><br>
+
+
+<h2>Seguimos, MatSnackBar, mensajes en la parte inferior de la pantalla</h2>
+<!--Lo primero, inyectar MatSnackBar en el archivo ts del componente-->
+<!--En el archivo ts, implementar el metodo openSnackBar()-->
+<!--Finalmente, el boton para que al pulsarlo aparezca-->
+
+<!--Lo primero que se pone es el mensaje de la izquierda -->
+<!--Lo segundo el nombre del boton que se genera a la derecha, que es un boton para cerrar el SnackBar-->
+<!--Lo tercero es el tiempo en milisegundos para que se cierre-->
+
+<button mat-button color="primary" (click)="openSnackBar('¡Hola!', 'Si me pulsas me cierro', 2000)">SnackBar con boton de cerrar</button>
+<br>
+
+<!--Si quieres el SnackBar sin boton de cerrar, se le pasa el parametro vacio-->
+
+<button mat-button color="primary" (click)="openSnackBar('¡Hola! No puedes cerrarme y voy a estar aqui un ratito', '', 5000)"><mat-icon>favorite</mat-icon>SnackBar sin boton de cerrar</button>
+
+<!--Ahora bien, si queremos una opcion distinta para el boton, hay que recurrir a MatSnackBarRef, pero vamos a dejar esto en construccion-->
+<p>Otras funcionalidades para el boton del SnackBar en construccion</p>
+<br><br><br><br>
+
+
+
+
+<button mat-raised-button [routerLink]="'/mostrar'">Vamos con las MatTables, tablas vaya</button>
+
+<!--MatTable module en AppModule-->
+
+

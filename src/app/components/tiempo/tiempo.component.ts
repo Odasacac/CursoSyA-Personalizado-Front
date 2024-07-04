@@ -51,7 +51,10 @@ export class TiempoComponent implements OnInit{
 
   //Y ahora una variable fecha para tontear con los Pipes
 
-  fecha = new Date(); //Que prácticamente es lo mismo que: let fecha: Date = new Date();, solo que en el comentario ya dices que fecha es tipo Date
+  fecha = new Date(); //Que prácticamente es lo mismo que: let fecha: Date = new Date();, solo que en la del comentario ya dices que fecha es de tipo Date
+
+  //Boolean para mostrar el menu especifico
+  public showMenuEspecifico: boolean = false;
 
   ngOnInit(): void
   {
@@ -105,15 +108,24 @@ export class TiempoComponent implements OnInit{
           this.longitud=this.weather.coord.lon;
           this.descripcion=this.weather.weather[0].description;
       },
+
       //Cuando el servicio devuelva un error no entra en subscribe, sino que entra en error
+
       (error: any) => {
         this.showError=true; //Es decir, que hay un error
         this.mensajeError="Error al consultar el estado del tiempo.";
       })
+      
       //Subscribe es un metodo que provee Angular cuando se consume un servicio
       //Lo que hace es suscribirse a la respuesta del método getEstadoTiempo
       //Esto quiere decir que cuando el metodo getEstadoTiempo termine su tarea, todos los componentes suscritos a él van a recibir una respuesta del servicio
 
+  }
+
+
+  mostrarMenu()
+  {
+    this.showMenuEspecifico=!this.showMenuEspecifico;
   }
 
 

@@ -2,6 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainComponent} from './components/main/main.component';
 import { TiempoComponent } from './components/tiempo/tiempo.component';
+import { NewComponentComponent } from './components/new-component/new-component.component';
+import { BienvenidaComponent } from './components/bienvenida/bienvenida.component';
+import { MostrarmensajesComponent } from './components/mostrarmensajes/mostrarmensajes.component';
+import { EmailComponent } from './components/email/email.component';
+
 
 //Este modulo es el modulo de rutas
 //Se encarga de determinar la ruta de cada componente para saber cómo acceder a cada uno de ellos.
@@ -10,8 +15,13 @@ import { TiempoComponent } from './components/tiempo/tiempo.component';
 const routes: Routes = [
   {path: 'main', component: MainComponent},
   {path: 'time', component: TiempoComponent},
-  {path: '', redirectTo: '/main', pathMatch:'full'},
+  {path: 'new', component: NewComponentComponent},
+  {path: 'home', component: BienvenidaComponent},
+  {path: 'mostrar', component: MostrarmensajesComponent},
+  {path: 'email', component: EmailComponent},
+  {path: '', redirectTo: '/home', pathMatch:'full'},
   {path: '*', component: MainComponent}
+
  
   //Es decir, que cuando la ruta sea path, se llamara al componente component
   //Si no hay nada en la ruta, cargara Main

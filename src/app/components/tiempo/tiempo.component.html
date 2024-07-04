@@ -1,5 +1,36 @@
+
+<!--Vamos a crear poner el boton para expandir el menu especifico-->
+
+<button (click)="mostrarMenu()" *ngIf="!showMenuEspecifico">Mostrar menu del componente</button>
+<button (click)="mostrarMenu()" *ngIf="showMenuEspecifico">Esconder menu del componente</button>
+
+
+<div>
+    <!--Este es el menu especifico-->
+    <ul *ngIf="showMenuEspecifico">
+      <br><h5>Menu especifico de Tiempo</h5><br>
+    <li>
+          <button>Opcion 1 Tiempo</button>
+      </li>
+      <br>
+      <li>
+          <button>Opcion 2 Tiempo</button>
+      </li>
+      <br>
+      <li>
+          <button>Opcion 3 Tiempo</button>
+      </li>
+    </ul>
+    <br>
+  </div>
+
+
+
+
+
+
 <div class="container">
-    <h4>Consulta del tiempo por ciudad</h4>
+    <h4 class="marginByT">Consulta del tiempo por ciudad</h4>
 
     <!--Vamos a usar el Pipe de fecha, para que tenga un formato mas amigable-->
     <h5>{{fecha | date:'dd/MM/yyyy'}}</h5>

@@ -1,0 +1,12 @@
+.derechaDelTodo
+{
+    position: absolute;
+    right: 0;    
+}
+
+.paraFormulario
+{
+    display: flex;
+    flex-direction: column;
+  width: 500px;
+}

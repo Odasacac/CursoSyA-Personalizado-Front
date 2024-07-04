@@ -1,3 +1,35 @@
+<!--Vamos a crear el boton para expandir el menu especifico-->
+
+<button [ngClass]="{'verde': !showMenuEspecifico, 'rojo':showMenuEspecifico}" (click)="mostrarMenu()">{{nombre}}</button>
+
+
+<div>
+    <!--Este es el menu especifico-->
+    <ul *ngIf="showMenuEspecifico">
+        <br><h5>Menu especifico de Main</h5><br>
+        <li>
+              <button>Opcion 1 Main</button>
+          </li>
+          <br>
+          <li>
+              <button>Opcion 2 Main</button>
+          </li>
+          <br>
+          <li>
+              <button>Opcion 3 Main</button>
+          </li>
+    </ul>
+    <br>
+  </div>
+
+
+
+
+
+
+
+
+
 <!--Tema directivas-->
 
 <h4>En este apartado vamos a probar directivas</h4>
@@ -16,6 +48,8 @@
 
 
 <br>
+<h5>Primero listar un array de Strings con ngFor</h5>
+<h5>Aunque tambien tiene un ngIf para el tema del boton</h5>
 <div class="container" *ngIf="showCiudad">
     <p>Ciudades</p>
     <ul> 
@@ -32,9 +66,8 @@
 <br>
 
 
-
+<h5>Y aqui el ngClass, que basicamente cambia la hoja de estilo CSS</h5>
 <div class="container">
-    <h4>ngClass</h4>
     <br>
     <!--La clase y el boolean que si es verdadero hace que se llame a la clase-->
     <!--Y tambien si es falso el booleano carga otra clase-->
@@ -45,3 +78,9 @@
         <button class="btn btn-primary" (click)="cambioCSS()">Cambio de estilo CSS</button>
     </div>
 </div>
+
+
+
+
+
+  

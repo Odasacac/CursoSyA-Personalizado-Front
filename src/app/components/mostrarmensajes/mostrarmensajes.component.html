@@ -1,0 +1,106 @@
+<h2>Mostrar Mensajes</h2>
+
+
+<!--Vamos a crear una tabla para esto-->
+
+<br><br><div *ngIf="mostrarOcultarB">
+  
+        <table mat-table [dataSource]="dataSource">
+        <!--mat-table convierte la tabla HTML estándar en una tabla con funcionalidades de Angular Material-->
+        <!--[dataSource]="dataSource" es una vinculación de datos que enlaza la fuente de datos de la tabla a una propiedad dataSource del componente-->
+        <!--Es decir, vincula esta tabla con el dataSource del componente-->
+
+        <!--Vamos ahora con las columnas-->
+        
+        <!--Las columnas, hay que ir una por una-->
+        <!--Se usa la directiva ng-cointaner para cada columna-->
+
+                <ng-container matColumnDef="id"> <!--El matColumnDef es para relacionarlo con el displayedColumns del TypeScript-->
+
+
+                        <th mat-header-cell *matHeaderCellDef></th>
+                        <!--th define una celda de encabezado en una tabla-->
+                        <!--mat-header-cell se aplica a un th y agrega estilos y comportamientos a la celda-->
+                        <!--*matHeaderCellDef indica que el contenido dentro de este elemento <th> se utilizará como un encabezado de columna en la tabla, en este caso, el ID-->
+
+
+                        <td mat-cell *matCellDef="let element"> {{element.id}}</td>
+                        <!--td define una celda de tabla de datos de fila-->
+                        <!--mat-cell aplica estilos especificos a la celda-->
+                        <!--*matCellDef marca la celda como una celda de datos cuyos datos vendran de la variable element-->
+                        <!--element.id accede a la propiedad id del objeto element y muestra su valor dentro de la celda.-->                       
+                </ng-container>
+                <!--Y ahora se hace esto para cada columna-->
+
+
+                <ng-container matColumnDef="nombre">
+                        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                        <td mat-cell *matCellDef="let element"> {{element.nombre}}</td>                    
+                </ng-container>
+
+                <ng-container matColumnDef="correo">
+                        <th mat-header-cell *matHeaderCellDef>Correo</th>
+                        <td mat-cell *matCellDef="let element"> {{element.correo}}</td>                    
+                </ng-container>
+
+                <ng-container matColumnDef="academia">
+                        <th mat-header-cell *matHeaderCellDef>Academia</th>
+                        <td mat-cell *matCellDef="let element"> {{element.academia}}</td>                    
+                </ng-container>
+
+                <ng-container matColumnDef="mensaje">
+                        <th mat-header-cell *matHeaderCellDef>Mensaje</th>
+                        <td mat-cell *matCellDef="let element"> {{element.mensaje}}</td>                    
+                </ng-container>
+
+
+                <!--Para los botones-->
+
+              
+
+                <!--Ya con todas las columnas definidas, -->
+
+                <tr mat-header-row-def *matHeaderRowDef="displayedColumns"></tr>
+                <!--mat-header-row-def define las filas de encabezado de la tabla.-->
+                <!--*matHeaderRowDef="displayedColumns" define las columnas que se mostrarán en el encabezado de la tabla-->
+
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                <!--mat-row define las filas de datos de la tabla-->
+                <!--*matRowDef="let row; columns: displayedColumns" define cómo se deben renderizar las filas de datos-->
+                <!--let row crea una variable row que contendrá los datos de cada fila a medida que se itera sobre ellas-->
+                <!--columns: displayedColumns especifica las columnas que se deben mostrar para cada fila de datos, de acuerdo con el array displayedColumns-->
+
+       </table>
+
+      
+  
+</div>
+
+
+
+
+
+
+
+<br><mat-label *ngIf="errorB">Error al procesar los datos de la BBDD</mat-label>
+
+
+<!--Con este boton se muestra/oculta, pero solo si se ha generado con el boton de antes-->
+<button mat-raised-button (click)="mostrarOcultar()"><mat-icon>{{icono}}</mat-icon>{{mostrarOcultarTexto}}</button>
+<!--Y con este boton se genera de nuevo-->
+<button mat-raised-button (click)="getMensajes()" *ngIf="mostrarOcultarB"><mat-icon>home</mat-icon>Actualizar tabla</button>
+<br><br>
+
+<p>Borrar un mensaje por su ID</p>
+
+<!--Vamos a hacer un miniformulario, ver formularios en el componente NewComponent-->
+
+<form [formGroup]="formulario" class="paraFormulario" (ngSubmit)="onSubmit()"> 
+        <mat-form-field appearance="fill">
+                <mat-label>Introduce ID</mat-label>
+                <input matInput formControlName="id" required matInput placeholder="Introduzca ID"> 
+                <mat-error *ngIf="formulario.get('id')?.hasError('required')">El ID es obligatorio</mat-error>
+                <mat-error *ngIf="formulario.get('id')?.hasError('pattern')">Introduzca solo numeros positivos y enteros</mat-error>
+        </mat-form-field>
+<br><br><br><button mat-raised-button class="mb-3" color="primary" type="submit">Borrar</button>
+</form>

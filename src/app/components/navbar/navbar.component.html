@@ -7,7 +7,8 @@ En este caso hemos copiado un navbar
 
 <nav class="navbar bg-dark navbar-expand-lg border-bottom border-body" data-bs-theme="dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
+
+      <a class="navbar-brand" [routerLink]="'/home'">HOME</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -15,24 +16,70 @@ En este caso hemos copiado un navbar
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          
           <li class="nav-item">
              <!--Aqui, con el [routerLink] lo que hacemos es que cuando se haga click en el boton de Home, cargue el componente MainComponent-->
              <!--[routerLink]="'/main'"-->
-            <a class="nav-link active" [routerLink]="'/main'" aria-current="page" href="#">Main</a>
+            <a class="nav-link active" [routerLink]="'/main'" >---Main---</a>
           </li>
-          <li class="nav-item">
-            <!--Aqui con lo mismo pero con TiempoComponent-->
-            <a class="nav-link" [routerLink]="'/time'">Tiempo</a>
-          </li>
-          
-          
+
+
 
           <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+            <!--Aqui con lo mismo pero con TiempoComponent-->
+            <a class="nav-link active" [routerLink]="'/time'">---Tiempo---</a>
           </li>
+          
+          
+          <!--Voy a probar con un componente nuevo-->
+          <li class="nav-item">
+             <a class="nav-link active" [routerLink]="'/new'">---New---</a>
+          </li>
+
+                   <!--Para el componente Mostrar mensajes-->
+          <li class="nav-item">   
+            <a class="nav-link active" [routerLink]="'/mostrar'">---Mostrar Mensajes---</a>
+          </li>
+
+            <!--Voy a probar con un boton que despliegue un menu-->
+            <!--Como se encuentra en el navbar, el menu (que está mas abajo) se mostrará antes que el componente-->
+            <!--Ya que en el app.component.html primero esta el navbar y luego el router-outlet-->
+          <li>
+              <button class="desplazarALaDerecha"(click)="mostrar()">
+                <span class="navbar-toggler-icon"></span> <!--Básicamente esta etiqueta es la que hace que tenga las tres linea horizonales-->
+              </button>
+          </li>
+
+          <li class="nav-item" *ngIf="showMenu">
+            <a class="nav-link active" [routerLink]="'/email'">---EMAIL---</a>
+         </li>
+
         </ul>
    
         
       </div>
     </div>
   </nav>
+  <br>
+
+
+  <div>
+    <!--Este es el menu general-->
+    <ul class="desplazarALaDerecha"*ngIf="showMenu">
+      <br><h5>Menu general</h5><br>
+      <li>
+            <button>Opcion 1 General</button>
+        </li>
+        <br>
+        <li>
+            <button (click)="aWeb()">Sobre mí</button>
+        </li>
+        <br>
+        <li>
+            <button (click)="cerrar()">Cerrar aplicación*</button> <!--Leer metodo cerrar() del componente-->
+        </li>
+        <br>
+    </ul>
+  </div>
+ 
